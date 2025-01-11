@@ -1,0 +1,42 @@
+{
+	"compilerOptions": {
+		"target": "es2016",
+		"module": "commonjs",
+		"rootDir": "./src",
+		"outDir": "./dist",
+		"moduleResolution": "node",
+		"baseUrl": "./",
+		"paths": {
+			"@utils/*": ["./src/utils/*"],
+			"@interfaces/*": ["./src/types/*"],
+			"@config/*": ["./src/config/*"],
+			"@constants/*": ["./src/constants/*"],
+			"@db/*": ["./src/db/*"],
+			"@routes/*": ["./src/routes/*"],
+			"@middlewares/*": ["./src/middlewares/*"],
+			"@services/*": ["./src/services/*"],
+			"@controllers/*": ["./src/controllers/*"],
+			"@validators/*": ["./src/validators/*"]
+		},
+		"allowJs": false,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"strictBindCallApply": true,
+		"strictPropertyInitialization": true,
+		"noImplicitThis": true,
+		"alwaysStrict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noUncheckedIndexedAccess": true,
+		"allowUnusedLabels": false,
+		"allowUnreachableCode": false,
+		"skipDefaultLibCheck": true,
+		"skipLibCheck": true
+	},
+	"include": ["src"],
+	"exclude": ["node_modules"]
+}

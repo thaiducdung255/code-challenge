@@ -1,0 +1,8 @@
+node_modules
+biome.json
+readme.md
+.gitignore
+.keep
+dist
+Dockerfile
+docker-compose.yaml

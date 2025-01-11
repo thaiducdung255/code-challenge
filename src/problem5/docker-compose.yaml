@@ -1,0 +1,48 @@
+services:
+  api:
+    container_name: problem_5.api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3500:${PORT}
+    env_file: .env.production
+    depends_on:
+      - db_migrate
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${PORT}/ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  db_migrate:
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM node:23-alpine3.20
+        WORKDIR /app
+        COPY drizzle.config.ts tsconfig.json package.json ./
+        COPY drizzle drizzle
+        COPY src src
+        RUN npm install
+        CMD npx drizzle-kit migrate
+    container_name: problem_5.db_migrate
+    env_file: .env.production
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    env_file: .env.production
+    container_name: problem_5.db
+    image: bitnami/postgresql:17.2.0-debian-12-r5
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRESQL_USERNAME} -d ${POSTGRESQL_DATABASE}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
