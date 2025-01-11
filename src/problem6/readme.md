@@ -92,7 +92,7 @@ Below is a high-level flow diagram for the Scoreboard Module:
 
 **Diagram**
 
-[diagram](./diagram.png)
+[!diagram](./diagram.png)
 
 ## Implementation Notes
 
